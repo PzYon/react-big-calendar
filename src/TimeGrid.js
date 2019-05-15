@@ -238,18 +238,22 @@ export default class TimeGrid extends Component {
   }
 
   measureGutter() {
-    if (this.measureGutterAnimationFrameRequest) {
-      window.cancelAnimationFrame(this.measureGutterAnimationFrameRequest)
-    }
-    this.measureGutterAnimationFrameRequest = window.requestAnimationFrame(
-      () => {
-        const width = getWidth(this.gutter)
-
-        if (width && this.state.gutterWidth !== width) {
-          this.setState({ gutterWidth: width })
-        }
+    setTimeout(() => {
+      if (this.measureGutterAnimationFrameRequest) {
+        window.cancelAnimationFrame(this.measureGutterAnimationFrameRequest)
       }
-    )
+
+      // consider using "import raf from 'dom-helpers/util/requestAnimationFrame'"
+      this.measureGutterAnimationFrameRequest = window.requestAnimationFrame(
+        () => {
+          const width = getWidth(this.gutter)
+
+          if (width && this.state.gutterWidth !== width) {
+            this.setState({ gutterWidth: width })
+          }
+        }
+      )
+    }, 0)
   }
 
   applyScroll() {

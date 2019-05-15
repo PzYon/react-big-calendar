@@ -133,14 +133,14 @@ class Example extends React.Component {
                   {EXAMPLES[selected]}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  {Object.entries(EXAMPLES).map(([key, title]) => (
+                  {Object.keys(EXAMPLES).map(key => (
                     <MenuItem
                       active={this.state.selected === key}
                       key={key}
                       href={`#${key}`}
                       onClick={() => this.select(key)}
                     >
-                      {title}
+                      {EXAMPLES[key]}
                     </MenuItem>
                   ))}
                 </Dropdown.Menu>

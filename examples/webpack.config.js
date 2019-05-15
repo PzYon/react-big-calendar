@@ -5,7 +5,11 @@ const browsers = ['last 2 versions', 'ie >= 10', 'not android <= 4.4.3']
 
 module.exports = {
   devtool: 'source-map',
-  entry: path.join(__dirname, '../examples/App.js'),
+  entry: [
+    '@babel/polyfill',
+    path.join(__dirname, '../examples/Polyfills.js'),
+    path.join(__dirname, '../examples/App.js'),
+  ],
   output: {
     path: path.join(__dirname, '../examples/'),
     filename: 'bundle.js',
